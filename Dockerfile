@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
  && echo "deb-src http://ppa.launchpad.net/chris-lea/libsodium/ubuntu trusty main" >> /etc/apt/sources.list \
  && apt-get update \
  && apt-get install -y libsodium-dev python-pip wget
- && apt-get install -y python-pip git gcc g++ make
+ && apt-get install -y gcc g++ make
 
 RUN wget https://github.com/jedisct1/libsodium/releases/download/1.0.13/libsodium-1.0.13.tar.gz \
 && tar zxvf libsodium-1.0.13.tar.gz \
