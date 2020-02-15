@@ -78,9 +78,11 @@ start(){
   list=(${all//;/ })
   for var in ${list[@]}
   do
-    string="$var"  
-    array=(${string//,/ })
-    satrtParam ${array[0]} ${array[1]} ${array[2]}
+    if [ $var ];then
+      string="$var"  
+      array=(${string//,/ })
+      satrtParam ${array[0]} ${array[1]} ${array[2]}
+    fi     #ifend
   done 
 }
 build

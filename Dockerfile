@@ -7,8 +7,9 @@ RUN apt-get update && apt-get install -y \
  && echo "deb http://ppa.launchpad.net/chris-lea/libsodium/ubuntu trusty main" >> /etc/apt/sources.list \
  && echo "deb-src http://ppa.launchpad.net/chris-lea/libsodium/ubuntu trusty main" >> /etc/apt/sources.list \
  && apt-get update \
- && apt-get install -y libsodium-dev python-pip
+ && apt-get install -y libsodium=1.0.8 python-pip
 
-RUN pip install shadowsocks
+# RUN pip install shadowsocks
+RUN pip install git+https://github.com/shadowsocks/shadowsocks.git@master
 
 ENTRYPOINT ["/usr/local/bin/ssserver"]
