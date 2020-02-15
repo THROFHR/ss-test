@@ -47,7 +47,7 @@ satrtParam(){
   pass=$2
   m=$3
   name=${NAME}-${port}-${pass}-${m}
-  echo $name
+  echo "端口：${port} 密码：${pass} 加密方法：${m}"
   images=$(docker images -q $INAME)  #检查是否构建成功
   if [ $images ];then
     container=$(docker ps -a -f name=$name -q)
