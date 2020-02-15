@@ -39,7 +39,6 @@ ss32='10032,nba123,xchacha20-poly1305'
 ss32='10032,nba123,xchacha20-ietf-poly1305'
 # 端口 密码 加密方法
 
-
 all="$ss01;$ss02;$ss03;$ss04;$ss05;$ss06;$ss07;$ss08;$ss09;$ss10;$ss11;$ss12;$ss13;$ss14;$ss15;$ss16;$ss17;$ss18;$ss19;$ss20;$ss21;$ss22;$ss23;$ss24;$ss25;$ss26;$ss27;$ss28;$ss29;$ss30;$ss32;$ss32"
 
 satrtParam(){
