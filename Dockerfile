@@ -1,19 +1,11 @@
-FROM ubuntu:14.04
+FROM alpine:3.4
 
-RUN apt-get update && apt-get install -y \
-    python-software-properties \
-    software-properties-common \
- && add-apt-repository ppa:chris-lea/libsodium \
- && echo "deb http://ppa.launchpad.net/chris-lea/libsodium/ubuntu trusty main" >> /etc/apt/sources.list \
- && echo "deb-src http://ppa.launchpad.net/chris-lea/libsodium/ubuntu trusty main" >> /etc/apt/sources.list \
- && apt-get update \
- && apt-get install -y libsodium-dev python-pip
+RUN if [ $(wget -qO- ipinfo.io/country) == CN ]; then echo "http://mirrors.ustc.edu.cn/alpine/v3.4/main/" > /etc/apk/repositories ;fi  \
+    &&  apk update && apk upgrade \
+    && apk add python py-pip libsodium
 
+COPY . /shadowsocks
+WORKDIR /shadowsocks
+RUN python setup.py install
 
-# RUN pip install shadowsocks
-RUN pip install shadowsocks
-
-RUN mkdir -p /usr/src/app
-COPY . /usr/src/app
-
-ENTRYPOINT ["/usr/local/bin/ssserver"]
+ENTRYPOINT ["/usr/bin/ssserver"]
