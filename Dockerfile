@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 
 
 # RUN pip install shadowsocks
-RUN pip install git+https://github.com/shadowsocks/shadowsocks.git@master
+RUN pip install shadowsocks
 
 RUN mkdir -p /usr/src/app
 COPY . /usr/src/app

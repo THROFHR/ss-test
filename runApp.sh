@@ -67,7 +67,6 @@ build(){
   images=$(docker images -q $INAME)
   if [ $images ];then
     echo "镜像已存在"
-    docker build -t $INAME . #构建镜像
   else
     echo "开始构建镜像"
     docker build -t $INAME . #构建镜像
