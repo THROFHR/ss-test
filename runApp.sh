@@ -49,19 +49,19 @@ satrtParam(){
   m=$3
   name=${NAME}-${port}-${pass}-${m}
   echo "端口：${port} 密码：${pass} 加密方法：${m}"
-  # images=$(docker images -q $INAME)  #检查是否构建成功
-  # if [ $images ];then
-  #   container=$(docker ps -a -f name=$name -q)
-  #   if [ $container ];then
-  #     echo "删除旧容器"
-  #     docker rm -f $container
-  #   fi     #ifend
-  #   echo "启动容器 $name"
-  #   docker run --name="$name" \
-  #     --restart always \
-  #     -p "$port":"$port" \
-  #     -d $INAME -s 0.0.0.0 -p $port -k $pass -m $m
-  # fi     #ifend
+  images=$(docker images -q $INAME)  #检查是否构建成功
+  if [ $images ];then
+    container=$(docker ps -a -f name=$name -q)
+    if [ $container ];then
+      echo "删除旧容器"
+      docker rm -f $container
+    fi     #ifend
+    echo "启动容器 $name"
+    docker run --name="$name" \
+      --restart always \
+      -p "$port":"$port" \
+      -d $INAME -s 0.0.0.0 -p $port -k $pass -m $m
+  fi     #ifend
 }
 
 
@@ -84,7 +84,7 @@ start(){
     satrtParam ${array[0]} ${array[1]} ${array[2]}
   done 
 }
-# build
+build
 start
 
 
