@@ -1,3 +1,4 @@
+#!/bin/bash
 ID=$(git rev-parse --short HEAD)
 echo "构建镜像ID： $ID"
 INAME=ranxfan/shadowsocks-$ID
