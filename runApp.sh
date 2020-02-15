@@ -32,11 +32,11 @@ ss24='10024,nba123,salsa20'
 ss25='10025,nba123,chacha20'
 ss26='10026,nba123,chacha20-ietf'
 ss27='10027,nba123,chacha20-poly1305'
-ss28='10028,nba123,chacha20-poly1305-ietf'
+ss28='10028,nba123,chacha20-ietf-poly1305'
 ss29='10029,nba123,xchacha20'
 ss30='10030,nba123,xchacha20-ietf'
 ss32='10032,nba123,xchacha20-poly1305'
-ss32='10032,nba123,xchacha20-poly1305-ietf'
+ss32='10032,nba123,xchacha20-ietf-poly1305'
 # 端口 密码 加密方法
 
 
