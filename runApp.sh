@@ -40,7 +40,7 @@ ss32='10032,nba123,xchacha20-poly1305-ietf'
 # 端口 密码 加密方法
 
 
-list=($ss01 $ss02 $ss03 $ss04 $ss05 $ss06 $ss07 $ss08 $ss09 $ss10 $ss11 $ss12 $ss13 $ss14 $ss15 $ss16 $ss17 $ss18 $ss19 $ss20 $ss21 $ss22 $ss23 $ss24 $ss25 $ss26 $ss27 $ss28 $ss29 $ss30 $ss32 $ss32)
+all="$ss01;$ss02;$ss03;$ss04;$ss05;$ss06;$ss07;$ss08;$ss09;$ss10;$ss11;$ss12;$ss13;$ss14;$ss15;$ss16;$ss17;$ss18;$ss19;$ss20;$ss21;$ss22;$ss23;$ss24;$ss25;$ss26;$ss27;$ss28;$ss29;$ss30;$ss32;$ss32"
 
 satrtParam(){
   port=$1
@@ -48,19 +48,19 @@ satrtParam(){
   m=$3
   name=${NAME}-${port}-${pass}-${m}
   echo "端口：${port} 密码：${pass} 加密方法：${m}"
-  images=$(docker images -q $INAME)  #检查是否构建成功
-  if [ $images ];then
-    container=$(docker ps -a -f name=$name -q)
-    if [ $container ];then
-      echo "删除旧容器"
-      docker rm -f $container
-    fi     #ifend
-    echo "启动容器 $name"
-    docker run --name="$name" \
-      --restart always \
-      -p "$port":"$port" \
-      -d $INAME -s 0.0.0.0 -p $port -k $pass -m $m
-  fi     #ifend
+  # images=$(docker images -q $INAME)  #检查是否构建成功
+  # if [ $images ];then
+  #   container=$(docker ps -a -f name=$name -q)
+  #   if [ $container ];then
+  #     echo "删除旧容器"
+  #     docker rm -f $container
+  #   fi     #ifend
+  #   echo "启动容器 $name"
+  #   docker run --name="$name" \
+  #     --restart always \
+  #     -p "$port":"$port" \
+  #     -d $INAME -s 0.0.0.0 -p $port -k $pass -m $m
+  # fi     #ifend
 }
 
 
@@ -75,7 +75,7 @@ build(){
 }
 
 start(){
-
+  list=(${all//;/ })
   for var in ${list[@]}
   do
     string="$var"  
@@ -83,7 +83,7 @@ start(){
     satrtParam ${array[0]} ${array[1]} ${array[2]}
   done 
 }
-build
+# build
 start
 
 
