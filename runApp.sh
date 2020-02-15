@@ -5,7 +5,7 @@ echo "构建镜像名： $INAME"
 NAME=shadowsocks
 echo "启动容器名： $NAME"
 
-ss01='10001,nba123,none'
+# ss01='10001,nba123,none'
 ss02='10002,nba123,table'
 ss03='10003,nba123,rc4'
 ss04='10004,nba123,rc4-md5-6'
@@ -34,19 +34,17 @@ ss26='10026,nba123,chacha20-ietf'
 ss27='10027,nba123,chacha20-poly1305'
 ss28='10028,nba123,chacha20-ietf-poly1305'
 ss29='10029,nba123,xchacha20'
-ss30='10030,nba123,xchacha20-ietf'
-ss32='10032,nba123,xchacha20-poly1305'
-ss32='10032,nba123,xchacha20-ietf-poly1305'
+ss30='10032,nba123,xchacha20-ietf-poly1305'
 # 端口 密码 加密方法
 
-all="$ss01;$ss02;$ss03;$ss04;$ss05;$ss06;$ss07;$ss08;$ss09;$ss10;$ss11;$ss12;$ss13;$ss14;$ss15;$ss16;$ss17;$ss18;$ss19;$ss20;$ss21;$ss22;$ss23;$ss24;$ss25;$ss26;$ss27;$ss28;$ss29;$ss30;$ss32;$ss32"
+all="$ss01;$ss02;$ss03;$ss04;$ss05;$ss06;$ss07;$ss08;$ss09;$ss10;$ss11;$ss12;$ss13;$ss14;$ss15;$ss16;$ss17;$ss18;$ss19;$ss20;$ss21;$ss22;$ss23;$ss24;$ss25;$ss26;$ss27;$ss28;$ss29;$ss30;$ss31;$ss32"
 
 satrtParam(){
   port=$1
   pass=$2
   m=$3
   name=${NAME}-${port}-${pass}-${m}
-  echo "端口：${port} 密码：${pass} 加密方法：${m}"
+  echo "端口：${port} 密码：${pass} 加密方法：${m} 启动: python shadowsocks/server.py -s 0.0.0.0 -p $port -k $pass -m $m"
   images=$(docker images -q $INAME)  #检查是否构建成功
   if [ $images ];then
     container=$(docker ps -a -f name=$name -q)
@@ -78,7 +76,7 @@ start(){
   for var in ${list[@]}
   do
     if [ $var ];then
-      string="$var"  
+      string="$var"
       array=(${string//,/ })
       satrtParam ${array[0]} ${array[1]} ${array[2]}
     fi     #ifend
